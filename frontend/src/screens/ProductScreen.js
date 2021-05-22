@@ -7,7 +7,8 @@ const ProductScreen = ({ match }) => {
   const [product, setProduct] = useState({});
   useEffect(() => {
     fetchProduct();
-  });
+  }, [match]);
+
   const fetchProduct = async () => {
     const res = await fetch(`/api/products/${match.params.id}`);
     const data = await res.json();

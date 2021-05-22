@@ -30,9 +30,42 @@ const ProductScreen = ({ match }) => {
             <ListGroup.Item>Description: {product.description}</ListGroup.Item>
           </ListGroup>
         </Col>
+        <Col md={3}>
+          <Card>
+            <ListGroup variant='flush'>
+              <ListGroup.Item>
+                <Row>
+                  <Col>Price: </Col>
+                  <Col>
+                    <strong>${product.price}</strong>
+                  </Col>
+                </Row>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <Row>
+                  <Col>Status: </Col>
+                  <Col>
+                    {product.countInStock > 0 ? 'In Stock' : 'Out Of Stock'}
+                  </Col>
+                </Row>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <Button
+                  className='col-12 btn-secondary'
+                  type='button'
+                  disabled={product.countInStock === 0}
+                >
+                  {product.countInStock === 0 ? 'Not available' : 'Add to cart'}
+                </Button>
+              </ListGroup.Item>
+            </ListGroup>
+          </Card>
+        </Col>
       </Row>
     </div>
   );
 };
 
 export default ProductScreen;
+
+// btn-block is depreciated , col-12 is used instead

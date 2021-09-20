@@ -22,6 +22,7 @@ const reviewSchema = mongoose.Schema(
 
 const productSchema = mongoose.Schema(
   {
+    // here user is who uploaded the product, is linked to userSchema
     user: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,

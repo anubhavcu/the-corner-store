@@ -5,6 +5,7 @@ import {
   PRODUCT_LIST_FAIL,
   PRODUCT_LIST_REQUEST,
   PRODUCT_LIST_SUCCESS,
+  REMOVE_SELECTED_PRODUCT,
 } from '../constants/productConstants';
 import axios from 'axios';
 
@@ -38,4 +39,10 @@ export const listProductDetails = (id) => async (dispatch, getState) => {
         : error.message;
     dispatch({ type: PRODUCT_DETAILS_FAIL, payload: err });
   }
+};
+
+export const removeSeletedProduct = () => {
+  return {
+    type: REMOVE_SELECTED_PRODUCT,
+  };
 };

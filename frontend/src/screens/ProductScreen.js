@@ -4,7 +4,10 @@ import { Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Rating from '../components/Rating';
 import { PRODUCT_DETAILS_REQUEST } from '../redux/constants/productConstants';
-import { listProductDetails } from '../redux/actions/productActions';
+import {
+  listProductDetails,
+  removeSeletedProduct,
+} from '../redux/actions/productActions';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
 
@@ -16,6 +19,13 @@ const ProductScreen = ({ match }) => {
 
   useEffect(() => {
     dispatch(listProductDetails(match.params.id));
+
+    // performing a cleanup here, so when we go back from details page, productDetials state should go
+    // back to initial value, else when we click on new product , old product details will be show until
+    // that new action is completed and new state is set. so there will be a slight glitch of old product
+    return () => {
+      dispatch(removeSeletedProduct());
+    };
   }, [match, dispatch]);
 
   return (
